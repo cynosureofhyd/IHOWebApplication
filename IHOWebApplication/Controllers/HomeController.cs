@@ -20,11 +20,17 @@ namespace IHOWebApplication.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Connect()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult NewsandEvents()
+        {
+
+            return View("Partial1");
         }
     }
 }
