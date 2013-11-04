@@ -30,7 +30,7 @@ namespace IHOWebApplication.Controllers
         public ActionResult NewsandEvents()
         {
 
-            return View("Partial1");
+            return View("NewsandEvents");
         }
     }
 }

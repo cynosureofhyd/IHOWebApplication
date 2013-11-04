@@ -1,0 +1,73 @@
+﻿@model IHOWebApplication.Models.NewsModel
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/bootstrap-wysiwyg.js"></script>
+<script src="~/Scripts/kendo/2013.2.716/kendo.editor.min.js"></script>
+<script src="~/Scripts/kendo/2013.2.716/kendo.web.min.js"></script>
+<link href="~/Content/kendo/2013.2.716/kendo.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/kendo/2013.2.716/kendo.common.min.css" rel="stylesheet" />
+<style type="text/css">
+    #editor {
+        overflow: scroll;
+        max-height: 900px;
+    }
+</style>
+
+<script type="text/javascript">
+    //$('#editor').wysiwyg();
+    $(document).ready(function () {
+
+
+        $("#editor").kendoEditor({
+
+            value: "<p>foo</p>",
+            encoded: false
+        });
+    });
+</script>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4 align="center">Create a News Article</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @*<div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor" id="editor">
+
+        </div>*@
+        <textarea id="editor" rows="10" cols="30"></textarea>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Content)
+                @Html.ValidationMessageFor(model => model.Content)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    
+   
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
