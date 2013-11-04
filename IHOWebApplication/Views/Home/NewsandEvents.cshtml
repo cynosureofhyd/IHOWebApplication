@@ -7,18 +7,11 @@
 <link href="~/Content/kendo/2013.2.716/kendo.common.min.css" rel="stylesheet" />
 <link href="~/Content/kendo/2013.2.716/kendo.default.min.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-@*<script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>*@
 <script src="~/Scripts/kendo.all.min.js"></script>
 
 <script type="text/javascript">
-    //$('#editor').wysiwyg();
-   
-   
     $(document).ready(function () {
         jQuery.noConflict();
-        //$('#editor').click(function () {
-        //    alert("Hello");
-        //});
         $('#title').css('width', '1040');
         $('#title').css('max-width', '1040px');
         $("#editor").kendoEditor({
@@ -68,7 +61,6 @@
                 dialogButtonSeparator: "or",
                 dialogCancel: "Cancel"
             }
-           
         })
     });
 </script>
