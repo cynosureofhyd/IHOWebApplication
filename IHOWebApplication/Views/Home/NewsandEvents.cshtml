@@ -1,46 +1,101 @@
 ﻿@model IHOWebApplication.Models.NewsModel
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/bootstrap.js"></script>
-<script src="~/Scripts/bootstrap-wysiwyg.js"></script>
-<script src="~/Scripts/kendo/2013.2.716/kendo.editor.min.js"></script>
-<script src="~/Scripts/kendo/2013.2.716/kendo.web.min.js"></script>
-<link href="~/Content/kendo/2013.2.716/kendo.bootstrap.min.css" rel="stylesheet" />
+
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
 <link href="~/Content/kendo/2013.2.716/kendo.common.min.css" rel="stylesheet" />
+<link href="~/Content/kendo/2013.2.716/kendo.default.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/kendo.all.min.js"></script>
+
+<script type="text/javascript">
+    //$('#editor').wysiwyg();
+   
+   
+    $(document).ready(function () {
+        jQuery.noConflict();
+        $('#editor').click(function () {
+            alert("Hello");
+        });
+        $("#editor").kendoEditor({
+            messages: {
+                bold: "Bold",
+                italic: "Italic",
+                underline: "Underline",
+                strikethrough: "Strikethrough",
+                superscript: "Superscript",
+                subscript: "Subscript",
+                justifyCenter: "Center text",
+                justifyLeft: "Align text left",
+                justifyRight: "Align text right",
+                justifyFull: "Justify",
+                insertUnorderedList: "Insert unordered list",
+                insertOrderedList: "Insert ordered list",
+                indent: "Indent",
+                outdent: "Outdent",
+                createLink: "Insert hyperlink",
+                unlink: "Remove hyperlink",
+                insertImage: "Insert image",
+                insertHtml: "Insert HTML",
+                fontName: "Select font family",
+                fontNameInherit: "(inherited font)",
+                fontSize: "Select font size",
+                fontSizeInherit: "(inherited size)",
+                formatBlock: "Format",
+                formatting: "Format",
+                style: "Styles",
+                emptyFolder: "Empty Folder",
+                uploadFile: "Upload",
+                orderBy: "Arrange by:",
+                orderBySize: "Size",
+                orderByName: "Name",
+                invalidFileType: "The selected file \"{0}\" is not valid. Supported file types are {1}.",
+                deleteFile: "Are you sure you want to delete \"{0}\"?",
+                overwriteFile: "A file with name \"{0}\" already exists in the current directory. Do you want to overwrite it?",
+                directoryNotFound: "A directory with this name was not found.",
+                imageWebAddress: "Web address",
+                imageAltText: "Alternate text",
+                linkWebAddress: "Web address",
+                linkText: "Text",
+                linkToolTip: "ToolTip",
+                linkOpenInNewWindow: "Open link in new window",
+                dialogInsert: "Insert",
+                dialogUpdate: "Update",
+                dialogButtonSeparator: "or",
+                dialogCancel: "Cancel"
+            }
+        })
+    });
+</script>
+
+
 <style type="text/css">
     #editor {
         overflow: scroll;
         max-height: 900px;
     }
+    .col-md-offset-2
+    {
+        margin-left: 90%;
+    }
 </style>
-
-<script type="text/javascript">
-    //$('#editor').wysiwyg();
-    $(document).ready(function () {
-
-
-        $("#editor").kendoEditor({
-
-            value: "<p>foo</p>",
-            encoded: false
-        });
-    });
-</script>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4 align="center">Create a News Article</h4>
+        <h4>Create a News Article</h4>
         <hr />
         @Html.ValidationSummary(true)
         @*<div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor" id="editor">
 
         </div>*@
-        <textarea id="editor" rows="10" cols="30"></textarea>
+     
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10" >
                 @Html.EditorFor(model => model.Title)
                 @Html.ValidationMessageFor(model => model.Title)
             </div>
@@ -49,25 +104,20 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Content, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Content)
-                @Html.ValidationMessageFor(model => model.Content)
+                @*@Html.EditorFor(model => model.Content)
+                @Html.ValidationMessageFor(model => model.Content)*@
+                <textarea id="editor" rows="10" cols="30" style="width:1040px;height:240px"></textarea>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Publish" class="btn btn-default" />
             </div>
         </div>
     </div>
-    
-   
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
