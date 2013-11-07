@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -177,13 +179,35 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="IHOEntityDb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IHOEntityDb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IHOEntityDb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IHOEntityDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IHOEntityDb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IHOEntityDb.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\NewsModel.cs" />
+    <Compile Include="NewsAndEvent.cs">
+      <DependentUpon>IHOEntityDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\IHODb.mdf" />
+    <Content Include="App_Data\IHODb_log.ldf">
+      <DependentUpon>IHODb.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\iho_header_final_edge.jpg" />
@@ -336,6 +360,23 @@
     <Content Include="Scripts\bootstrap-wysiwyg.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="IHOEntityDb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IHOEntityDb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="IHOEntityDb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IHOEntityDb.edmx</DependentUpon>
+      <LastGenOutput>IHOEntityDb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="IHOEntityDb.edmx.diagram">
+      <DependentUpon>IHOEntityDb.edmx</DependentUpon>
+    </Content>
+    <Content Include="IHOEntityDb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IHOEntityDb.edmx</DependentUpon>
+      <LastGenOutput>IHOEntityDb.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -787,7 +828,7 @@
     <Content Include="Views\Home\NewsandEvents.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

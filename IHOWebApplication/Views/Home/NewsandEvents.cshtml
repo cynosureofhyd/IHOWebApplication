@@ -14,7 +14,9 @@
         jQuery.noConflict();
         $('#title').css('width', '1040');
         $('#title').css('max-width', '1040px');
+        var textarea = $('#editor');
         $("#editor").kendoEditor({
+            value:"Hello",
             messages: {
                 bold: "Bold",
                 italic: "Italic",
@@ -62,6 +64,40 @@
                 dialogCancel: "Cancel"
             }
         })
+
+        var publishButton = $('#Publish');
+        var editor = $("#editor").data("kendoEditor");
+        $('#Publish').click(function () {
+            console.log(editor.value());
+            //$.post("api/News", editor, function (data, status) {
+            //    alert("Data: " + data + "\nStatus: " + status);
+            //});
+            $.ajax({
+                url: "/api/News",
+                type: "Post",
+                data: JSON.stringify([editor.value()]), //{ Name: name, 
+                // Address: address, DOB: dob },
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) { alert(data); },
+                error: function () { alert('error'); }
+            });
+
+            //$.post("/api/News",
+            //    editor,
+            //     function (data, status) {
+            //         alert("Data: " + data + "\nStatus: " + status);
+            //     });
+        });
+        console.log(textarea.val());
+        //editor.ontimeupdate();
+        console.log(textarea.val());
+        //var textarea = $("#editor");
+        //textarea.kendoEditor({ value: "Hello, " });
+        //var editor = textarea.data("kendoEditor");
+        //editor.body.appendChild(editor.document.createTextNode("World"));
+        //console.log(textarea.val()); // logs "Hello, "
+        //editor.update();
+        //console.log(textarea.val()); // logs "Hello, World"
     });
 </script>
 
@@ -109,7 +145,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Publish" class="btn btn-default" />
+                <input type="button" id="Publish" value="Publish" class="btn btn-default" />
             </div>
         </div>
     </div>

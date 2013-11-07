@@ -10,6 +10,7 @@ namespace IHOWebApplication.Controllers
     {
         public ActionResult Index()
         {
+            //return RedirectToAction("NewsandEvents");
             return View();
         }
 
@@ -29,8 +30,14 @@ namespace IHOWebApplication.Controllers
 
         public ActionResult NewsandEvents()
         {
-
+            IHODbEntities db = new IHODbEntities();
             return View("NewsandEvents");
         }
+
+        //[HttpPost]
+        //public ActionResult NewsandEvents()
+        //{
+        //    return View();
+        //}
     }
 }
