@@ -1,9 +1,14 @@
 ﻿@model IHOWebApplication.Models.NewsModel
 
-
+<style type="text/css">
+    h4{
+        text-align:center;
+    }
+</style>
 @*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@
+<link href="~/Content/sunny/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" />
 <link href="~/Content/kendo/2013.2.716/kendo.common.min.css" rel="stylesheet" />
 <link href="~/Content/kendo/2013.2.716/kendo.default.min.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
@@ -11,12 +16,24 @@
 <script src="~/Scripts/jquery-ui-1.10.3.custom.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-       
+        $("#newsaccordion").accordion({
+            collapsible: true,
+            active: -10
+        });
+        $("#eventsaccordion").accordion({
+            collapsible: true,
+            active: -10
+        });
+        $("#travelandlearn").accordion({
+            collapsible: true,
+            active: -10
+        });
+        
         $('#title').css('width', '1040');
         $('#title').css('max-width', '1040px');
         var textarea = $('#editor');
         $("#editor").kendoEditor({
-            value:"Hello",
+            value: "Hello",
             messages: {
                 bold: "Bold",
                 italic: "Italic",
@@ -75,7 +92,7 @@
             $.ajax({
                 url: "/api/News",
                 type: "Post",
-                data: JSON.stringify([editor.value()]), //{ Name: name, 
+                data: JSON.stringify([editor.value()]), //{ Name: name,
                 // Address: address, DOB: dob },
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) { alert(data); },
@@ -88,22 +105,6 @@
             //         alert("Data: " + data + "\nStatus: " + status);
             //     });
         });
-        console.log(textarea.val());
-        //editor.ontimeupdate();
-        console.log(textarea.val());
-        //var textarea = $("#editor");
-        //textarea.kendoEditor({ value: "Hello, " });
-        //var editor = textarea.data("kendoEditor");
-        //editor.body.appendChild(editor.document.createTextNode("World"));
-        //console.log(textarea.val()); // logs "Hello, "
-        //editor.update();
-        //console.log(textarea.val()); // logs "Hello, World"
-
-
-        jQuery.noConflict();
-
-        $('#accordion').accordion();
-        
     });
 </script>
 
@@ -113,34 +114,109 @@
         overflow: scroll;
         max-height: 900px;
     }
-    .col-md-offset-2
-    {
+
+    .col-md-offset-2 {
         margin-left: 90%;
     }
 </style>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div id="accordion">
-    
+
+    <div>
+        <h4>News</h4>
+    </div>
+
+    <div id="newsaccordion">
+        <h3>Finder of lucy puts evolution on display</h3>
+        <div>
+            <p>
+                Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+                ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+                amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+                odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+            </p>
+        </div>
+        <h3>Core questions about human evolution</h3>
+        <div>
+            <p>
+                Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+                purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+                velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+                suscipit faucibus urna.
+            </p>
+        </div>
+        <h3>IHO Affiliate scientist opens exhibition</h3>
+        <div>
+            <p>
+                Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+                Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
+                ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
+                lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+            </p>
+            <ul>
+                <li>List item one</li>
+                <li>List item two</li>
+                <li>List item three</li>
+            </ul>
+        </div>
+        <h3>Oldest spear points date to 500,000 years</h3>
+        <div>
+            <p>
+                Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+                et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+                faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+                mauris vel est.
+            </p>
+            <p>
+                Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
+                Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+                inceptos himenaeos.
+            </p>
+        </div>
+    </div>
+    <div>
+        <h4>Events</h4>
+    </div>
+
+    <div id="eventsaccordion">
+
+        <h3>
+            Test: Next Lecture
+        </h3>
+        <div>
+
+        </div>
+        <h3>New Test Event</h3>
+        <div>
+
+        </div>
     </div>
     
+    <div>
+        <h4>Travel and Learn!</h4>
+    </div>
+    <div id="travelandlearn">
+        <h3><a href="">IHO Travel Program</a></h3>
+        <h3><a href="">France</a></h3>
+        <h3><a href="">Galapagos</a></h3>
+    </div>
+
     <div class="form-horizontal">
         <h4>Create a News Article</h4>
         <hr />
         @Html.ValidationSummary(true)
         @*<div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor" id="editor">
 
-        </div>*@
-     
+            </div>*@
+
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
-            <div class="col-md-10" >
+            <div class="col-md-10">
                 @*@Html.EditorFor(model => model.Title)
-                @Html.ValidationMessageFor(model => model.Title)*@
-                <input type="text" id="title"/>
+                    @Html.ValidationMessageFor(model => model.Title)*@
+                <input type="text" id="title" />
             </div>
         </div>
 
@@ -148,7 +224,7 @@
             @Html.LabelFor(model => model.Content, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.Content)
-                @Html.ValidationMessageFor(model => model.Content)*@
+                    @Html.ValidationMessageFor(model => model.Content)*@
                 <textarea id="editor" rows="10" cols="30" style="width:1040px;height:240px"></textarea>
             </div>
         </div>
