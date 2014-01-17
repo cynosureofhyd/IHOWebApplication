@@ -34,6 +34,11 @@ namespace IHOWebApplication.Controllers
             return View("NewsandEvents");
         }
 
+        public ActionResult TestAccordion()
+        {
+            return View();
+        }
+
         //[HttpPost]
         //public ActionResult NewsandEvents()
         //{

@@ -6,7 +6,10 @@
     <title>@ViewBag.Title - Institute Of Human Origins - Arizona State University</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+        @*@Scripts.Render("~/bundles/jqueryall")*@
+    <script src="~/Scripts/jquery-2.0.3.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.10.3.min.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,7 +27,7 @@
                     <li>@Html.ActionLink("News/Events", "NewsandEvents", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Connect", "Connect", "Home")</li>
-                    <li>@Html.ActionLink("Field Notes", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Field Notes", "TestAccordion", "Home")</li>
                     <li>@Html.ActionLink("Gallery", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Donate", "Contact", "Home")</li>
                 </ul>
@@ -40,7 +43,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

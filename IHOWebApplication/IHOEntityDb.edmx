@@ -4,7 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="IHODbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="IHODbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FieldNotes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ProfessorName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ImageSrc" Type="nvarchar" MaxLength="100" />
+          <Property Name="Bio" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MailAddress" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="NewsAndEvents">
           <Key>
             <PropertyRef Name="Id" />
@@ -14,10 +24,10 @@
           <Property Name="Content" Type="text" />
         </EntityType>
         <EntityContainer Name="IHODbModelStoreContainer">
+          <EntitySet Name="FieldNotes" EntityType="Self.FieldNotes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NewsAndEvents" EntityType="Self.NewsAndEvents" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IHODbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -31,7 +41,18 @@
         </EntityType>
         <EntityContainer Name="IHODbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="NewsAndEvents" EntityType="Self.NewsAndEvent" />
+          <EntitySet Name="FieldNotes" EntityType="IHODbModel.FieldNote" />
         </EntityContainer>
+        <EntityType Name="FieldNote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ProfessorName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ImageSrc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Bio" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -44,6 +65,17 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FieldNotes">
+            <EntityTypeMapping TypeName="IHODbModel.FieldNote">
+              <MappingFragment StoreEntitySet="FieldNotes">
+                <ScalarProperty Name="MailAddress" ColumnName="MailAddress" />
+                <ScalarProperty Name="Bio" ColumnName="Bio" />
+                <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
+                <ScalarProperty Name="ProfessorName" ColumnName="ProfessorName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

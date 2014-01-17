@@ -26,5 +26,6 @@ namespace IHOWebApplication
         }
     
         public virtual DbSet<NewsAndEvent> NewsAndEvents { get; set; }
+        public virtual DbSet<FieldNote> FieldNotes { get; set; }
     }
 }
