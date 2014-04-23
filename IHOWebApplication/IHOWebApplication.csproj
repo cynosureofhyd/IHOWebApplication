@@ -219,6 +219,7 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\ASU_IHO_vertical.jpg" />
     <Content Include="Content\Images\iho_header_final_edge.jpg" />
     <Content Include="Content\kendo\2013.2.716\Black\editor.png" />
     <Content Include="Content\kendo\2013.2.716\Black\imagebrowser.png" />
